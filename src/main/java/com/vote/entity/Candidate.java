@@ -18,7 +18,7 @@ public class Candidate extends User {
 	private LocalDate dateOfBirth;
 
 	@Column(length = 20, nullable = false, unique = true)
-	private int contact;
+	private String contact;
 
 	@OneToOne
 	private Address address; // one candidate can have only one address
@@ -52,11 +52,11 @@ public class Candidate extends User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public int getContact() {
+	public String getContact() {
 		return contact;
 	}
 
-	public void setContact(int contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 

@@ -1,11 +1,12 @@
 package com.vote.util;
 
 import org.springframework.beans.BeanUtils;
-
+import org.springframework.stereotype.Component;
 
 import com.vote.dto.CandidateDTO;
 import com.vote.entity.Candidate;
 
+@Component
 public class CandidateConverter {
 	
 //	method to convert dto to candidate entity
