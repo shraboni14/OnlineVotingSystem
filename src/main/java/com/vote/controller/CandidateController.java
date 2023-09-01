@@ -26,7 +26,7 @@ public class CandidateController {
 	CandidateConverter candidateConverter;
 
 	@PostMapping("/createCandidate")
-	public String createCandidate(@Valid @RequestBody Candidate candidate) {
+	public CandidateDTO createCandidate(@Valid @RequestBody Candidate candidate) {
 		return candidateService.createCandidate(candidate);
 	}
 
@@ -40,5 +40,7 @@ public class CandidateController {
 
 		return candidateService.getAllCandidate();
 	}
+	
+	
 
 }
