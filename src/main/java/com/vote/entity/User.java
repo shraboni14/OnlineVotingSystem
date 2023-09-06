@@ -11,6 +11,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
+
+
 @Entity
 @Table(name = "master_user")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -69,6 +72,21 @@ public class User {
 	}
 
 	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public User(int id, String name, String userName, String password, Role role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.userName = userName;
+		this.password = password;
 		this.role = role;
 	}
 	

@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import com.vote.dto.CandidateDTO;
 import com.vote.entity.Address;
 import com.vote.entity.Candidate;
+import com.vote.entity.ElectionMember;
 import com.vote.entity.Role;
 import com.vote.exception.ResourceNotFoundException;
 import com.vote.repository.AddressRepository;
 import com.vote.repository.CandidateRepository;
+import com.vote.repository.ElectionMemberRepository;
 import com.vote.repository.RoleRepository;
 import com.vote.service.CandidateService;
 import com.vote.util.CandidateConverter;
@@ -32,6 +34,10 @@ public class CandidateServiceImpl implements CandidateService {
 	@Autowired
 	AddressRepository addressRepository;
 
+	@Autowired
+	ElectionMemberRepository eMemberRepository;
+
+//	method to create candidate
 	@Override
 	public CandidateDTO createCandidate(Candidate candidate) {
 
@@ -53,6 +59,7 @@ public class CandidateServiceImpl implements CandidateService {
 		return cDto;
 	}
 
+//	method to get candidate by id
 	@Override
 	public CandidateDTO getCandidateById(int canId) throws ResourceNotFoundException {
 
@@ -61,6 +68,8 @@ public class CandidateServiceImpl implements CandidateService {
 //		using lambda expression for throwing my custom exception
 		return candidateConverter.convertEntityToDto(candidate);
 	}
+
+//	method to get all candidates in a list
 
 	@Override
 	public List<CandidateDTO> getAllCandidate() {
@@ -76,9 +85,10 @@ public class CandidateServiceImpl implements CandidateService {
 			cDtos.add(cDto);
 		}
 		return cDtos;
-
 	}
-
+	
+	
+//	method to update candidate
 	@Override
 	public CandidateDTO updateCandidate(int canId, Candidate candidate) throws ResourceNotFoundException {
 
@@ -98,6 +108,8 @@ public class CandidateServiceImpl implements CandidateService {
 		return candidateConverter.convertEntityToDto(existingCandidate);
 	}
 
+	
+//	method to delete a single candidate by id
 	@Override
 	public void deleteCandidateById(int canId) throws ResourceNotFoundException {
 
@@ -106,18 +118,64 @@ public class CandidateServiceImpl implements CandidateService {
 
 		Address address = candidate.getAddress();
 
+		ElectionMember eMember = candidate.getElectionMember();
+
 		if (address != null) {
 			candidate.setAddress(null);
 			addressRepository.delete(address);
 		}
 
+		if (eMember != null) {
+			eMember.setNoOfTotalVote(eMember.getNoOfTotalVote() - 1);
+		}
+
 		candidateRepository.delete(candidate);
 	}
 
+	
+//	method to delete all candidates
 	@Override
 	public void deleteAll() {
 
 		candidateRepository.deleteAll();
+	}
+
+	
+//	custom method to find candidate by name
+	@Override
+	public List<CandidateDTO> findByName(String name) {
+
+		List<Candidate> candidates = candidateRepository.findByName(name);
+
+		List<CandidateDTO> canDtos = new ArrayList<>();
+
+		for (Candidate c : candidates) {
+			canDtos.add(candidateConverter.convertEntityToDto(c));
+		}
+
+		return canDtos;
+	}
+
+	
+//	custom method to find candidate by their voter id
+	@Override
+	public List<CandidateDTO> findByVoterId(String voterId) {
+
+		List<Candidate> candidates = candidateRepository.findByVoterId(voterId);
+
+		List<CandidateDTO> candidateDTOs = new ArrayList<>();
+
+		for (Candidate c : candidates) {
+			candidateDTOs.add(candidateConverter.convertEntityToDto(c));
+		}
+		return candidateDTOs;
+	}
+
+	@Override
+	public long countByName(String name) {
+		
+		long canNo = candidateRepository.countByName(name);
+		return canNo;
 	}
 
 }

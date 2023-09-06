@@ -8,7 +8,14 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.vote.entity.Address;
+import com.vote.entity.ElectionMember;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class CandidateDTO extends UserDTO{
 
 	@NotNull(message = "VoterId is required")
@@ -25,6 +32,8 @@ public class CandidateDTO extends UserDTO{
 
 	@OneToOne
 	private Address address;
+	
+	private ElectionMember electionMember; // Many candidate can vote one member
 
 	public String getVoterId() {
 		return voterId;

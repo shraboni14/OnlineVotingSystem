@@ -7,10 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
+@Entity
+@AllArgsConstructor
 public class Candidate extends User {
-	
+
 	@Column(length = 20, nullable = false, unique = true)
 	private String voterId;
 
@@ -25,8 +29,6 @@ public class Candidate extends User {
 
 	@ManyToOne
 	private ElectionMember electionMember; // Many candidate can vote one member
-	
-	
 
 	public ElectionMember getElectionMember() {
 		return electionMember;
@@ -66,6 +68,21 @@ public class Candidate extends User {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	@Builder
+	public Candidate(int id, String name, String userName, String password, Role role, String voterId,
+			LocalDate dateOfBirth, String contact, Address address, ElectionMember electionMember) {
+		super(id, name, userName, password, role);
+		this.voterId = voterId;
+		this.dateOfBirth = dateOfBirth;
+		this.contact = contact;
+		this.address = address;
+		this.electionMember = electionMember;
+	}
+
+	public Candidate() {
+		super();
 	}
 
 }

@@ -16,9 +16,13 @@ public interface ElectionMemberService {
 //	method for fetch all members from the database
 	List<ElectionMemberDTO> getAllElectionMembers();
 
-//	method for update a single member
-	ElectionMemberDTO updateElectionMember(int memberId, ElectionMember member);
-
 //	method for deleting a particular member
 	void deleteElectionMemberById(int eMemberId);
+	
+//	method to assign candidate to election Member
+	void assignCandidateToMember(int canId, int memId);
+	
+//	custom method to find election member by their name
+	List<ElectionMemberDTO> findByMemberName(String memberName);
+	
 }

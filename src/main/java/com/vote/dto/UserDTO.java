@@ -7,6 +7,12 @@ import javax.validation.constraints.Size;
 
 import com.vote.entity.Role;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDTO {
 	private int id;
 

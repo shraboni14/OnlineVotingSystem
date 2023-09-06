@@ -9,7 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ElectionMember {
 
 	@Id
@@ -21,6 +26,9 @@ public class ElectionMember {
 
 	@Column(length = 30, nullable = false)
 	private String memberParty;
+	
+	@Column(nullable = false)
+	private int noOfTotalVote;
 
 	@OneToMany
 	private List<Candidate> candidates;	// one member can get multiple candidates vote
@@ -55,6 +63,14 @@ public class ElectionMember {
 
 	public void setCandidates(List<Candidate> candidates) {
 		this.candidates = candidates;
+	}
+
+	public int getNoOfTotalVote() {
+		return noOfTotalVote;
+	}
+
+	public void setNoOfTotalVote(int noOfTotalVote) {
+		this.noOfTotalVote = noOfTotalVote;
 	}
 	
 	

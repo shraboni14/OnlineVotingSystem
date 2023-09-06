@@ -16,12 +16,20 @@ public interface CandidateService {
 //	method to get all details in a loop
 	List<CandidateDTO> getAllCandidate();
 
-//	method to update saved student details which is present in the database
+//	method to update saved candidate details which is present in the database
 	CandidateDTO updateCandidate(int canId, Candidate candidate);
 
-//	method to delete one student details
+//	method to delete one candidate details
 	void deleteCandidateById(int canId);
 
-//	method to delete all the student
+//	method to delete all the candidate
 	void deleteAll();
+	
+//	custom method to search candidate by using name
+	List<CandidateDTO> findByName(String name);
+	
+//	custom method to search candidate by using voterId
+	List<CandidateDTO> findByVoterId(String voterId);
+	
+	long countByName(String name);
 }
