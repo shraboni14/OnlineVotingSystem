@@ -51,7 +51,7 @@ public class CandidateServiceImpl implements CandidateService {
 		Role role = roleRepository.findById(2).get();
 		candidate.setRole(role);
 
-		addressRepository.save(candidate.getAddress());
+		addressRepository.save(candidate.getAddress());	// saving the address of the candidate
 
 		candidateRepository.save(candidate); // saving the candidate object to the database
 
@@ -64,7 +64,7 @@ public class CandidateServiceImpl implements CandidateService {
 	public CandidateDTO getCandidateById(int canId) throws ResourceNotFoundException {
 
 		Candidate candidate = candidateRepository.findById(canId)
-				.orElseThrow(() -> new com.vote.exception.ResourceNotFoundException("Candidate", "id", canId));
+				.orElseThrow(() -> new ResourceNotFoundException("Candidate", "id", canId));
 //		using lambda expression for throwing my custom exception
 		return candidateConverter.convertEntityToDto(candidate);
 	}

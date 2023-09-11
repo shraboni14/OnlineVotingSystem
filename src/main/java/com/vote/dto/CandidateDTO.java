@@ -11,7 +11,6 @@ import com.vote.entity.Address;
 import com.vote.entity.ElectionMember;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
@@ -66,5 +65,14 @@ public class CandidateDTO extends UserDTO{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	public ElectionMember getElectionMember() {
+		return electionMember;
+	}
+
+	public void setElectionMember(ElectionMember electionMember) {
+		this.electionMember = electionMember;
+	}
+	
 
 }

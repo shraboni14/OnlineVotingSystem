@@ -11,9 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Builder;
-
-
 @Entity
 @Table(name = "master_user")
 @Inheritance(strategy = InheritanceType.JOINED)

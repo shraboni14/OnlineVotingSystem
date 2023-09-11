@@ -9,7 +9,6 @@ import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor

@@ -29,7 +29,7 @@ public class CandidateController {
 	@Autowired
 	CandidateConverter candidateConverter;
 
-//	controller for creating candidate
+//	rest api for creating candidate
 	@PostMapping("/createCandidate")
 	public CandidateDTO createCandidate(@Valid @RequestBody Candidate candidate) {
 		return candidateService.createCandidate(candidate);
